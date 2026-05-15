@@ -54,11 +54,15 @@ export default function StreakTracker() {
 
   if (loading) {
     return (
-      <div className="rounded-xl border border-[var(--border)] bg-[var(--card)] p-6">
-        <div className="mb-4 h-5 w-36 rounded bg-[var(--card-muted)] animate-pulse" />
+      <div className="bg-[var(--card)] rounded-xl p-6">
+        <div className="h-6 w-36 bg-[var(--card-muted)] rounded animate-pulse mb-4" />
+
         <div className="grid grid-cols-2 gap-4">
           {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="h-20 rounded-lg bg-[var(--card-muted)] animate-pulse" />
+            <div
+              key={i}
+              className="bg-[var(--card-muted)] rounded-lg h-28 animate-pulse"
+            />
           ))}
         </div>
       </div>

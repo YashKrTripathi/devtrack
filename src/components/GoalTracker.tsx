@@ -53,12 +53,13 @@ export default function GoalTracker() {
 
   if (loading) {
     return (
-      <div className="h-full rounded-xl border border-[var(--border)] bg-[var(--card)] p-6">
-        <div className="mb-4 h-5 w-32 rounded bg-[var(--card-muted)] animate-pulse" />
+      <div className="bg-[var(--card)] rounded-xl p-6 h-full">
+        <div className="h-6 w-32 bg-[var(--card-muted)] rounded animate-pulse mb-4" />
+
         {[1, 2, 3].map((i) => (
           <div key={i} className="mb-4">
-            <div className="mb-2 h-3 rounded bg-[var(--card-muted)] animate-pulse" />
-            <div className="h-2 rounded bg-[var(--card-muted)] animate-pulse" />
+            <div className="h-4 bg-[var(--card-muted)] rounded animate-pulse mb-2" />
+            <div className="h-2 bg-[var(--card-muted)] rounded animate-pulse" />
           </div>
         ))}
       </div>
