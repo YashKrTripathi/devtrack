@@ -17,7 +17,7 @@ import { supabaseAdmin } from "@/lib/supabase";
 import { resolveAppUser } from "@/lib/resolve-user";
 import { normalizeGitHubUsername } from "@/lib/validate-github-username";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 interface TimeBlocks {
   morning: number;
@@ -344,7 +344,7 @@ export async function GET(req: NextRequest) {
         repoParam
       );
       return Response.json(result);
-    } catch {
+    } catch (e) {
       return Response.json({ error: "GitHub API error" }, { status: 502 });
     }
   }
@@ -370,7 +370,7 @@ export async function GET(req: NextRequest) {
       });
 
       return Response.json(merged);
-    } catch {
+    } catch (e) {
       return Response.json({ error: "GitHub API error" }, { status: 502 });
     }
   }
@@ -456,7 +456,7 @@ export async function GET(req: NextRequest) {
       });
 
       return Response.json(merged);
-    } catch {
+    } catch (e) {
       return Response.json({ error: "GitHub API error" }, { status: 502 });
     }
   }
@@ -487,7 +487,7 @@ export async function GET(req: NextRequest) {
       fromDate
     );
     return Response.json(result);
-  } catch {
+  } catch (e) {
     return Response.json({ error: "GitHub API error" }, { status: 502 });
   }
 }

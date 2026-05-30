@@ -21,7 +21,7 @@ function parseUsers(users: string): [string, string] | null {
   let decoded: string;
   try {
     decoded = decodeURIComponent(users);
-  } catch {
+  } catch (e) {
     return null;
   }
 

@@ -18,7 +18,7 @@ import {
   upstashTryAcquireLock,
 } from "@/lib/upstash-rest";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 const GITHUB_API = "https://api.github.com";
 const CACHE_REFRESH_SECONDS = 60 * 60; // 1 hour
@@ -374,7 +374,7 @@ export async function GET(req: NextRequest) {
       expiresAt: Date.now() + CACHE_REFRESH_SECONDS * 1000,
     };
     return NextResponse.json(payload);
-  } catch {
+  } catch (e) {
     const cached = await cacheGet<LeaderboardPayload>(LEADERBOARD_CACHE_KEY);
     if (cached) {
       return NextResponse.json(cached, {

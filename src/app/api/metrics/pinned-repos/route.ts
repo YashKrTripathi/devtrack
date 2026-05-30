@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 interface PinnedRepo {
   name: string;
@@ -70,7 +70,7 @@ export async function GET() {
     );
 
     return Response.json({ pinnedRepos: nodes });
-  } catch {
+  } catch (e) {
     return Response.json({ error: "GitHub API error" }, { status: 502 });
   }
 }

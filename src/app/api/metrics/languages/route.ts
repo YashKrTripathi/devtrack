@@ -6,7 +6,7 @@ import { getAccountToken } from "@/lib/github-accounts";
 import { supabaseAdmin } from "@/lib/supabase";
 import { resolveAppUser } from "@/lib/resolve-user";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 const GITHUB_API = "https://api.github.com";
 
 export async function GET(req: NextRequest) {
@@ -97,7 +97,7 @@ export async function GET(req: NextRequest) {
             for (const [lang, bytes] of Object.entries(langs)) {
               langTotals[lang] = (langTotals[lang] ?? 0) + (bytes as number);
             }
-          } catch { }
+          } catch (e) { }
         })
       );
 
@@ -110,7 +110,7 @@ export async function GET(req: NextRequest) {
       return { languages };
     });
     return Response.json(data);
-  } catch {
+  } catch (e) {
     return Response.json({ error: "GitHub API error" }, { status: 502 });
   }
 }

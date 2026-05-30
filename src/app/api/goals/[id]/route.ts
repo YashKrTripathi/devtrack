@@ -70,7 +70,7 @@ export async function PATCH(
   let body: unknown;
   try {
     body = await req.json();
-  } catch {
+  } catch (e) {
     return Response.json({ error: "Invalid JSON" }, { status: 400 });
   }
 

@@ -72,7 +72,7 @@ async function fetchRepoStats(): Promise<RepoStats> {
             isSponsor: sponsorSet.has(c.login),
           }));
         }
-      } catch {
+      } catch (e) {
         // Supabase not configured locally — skip sponsor enrichment, show contributors as-is
       }
     }
@@ -85,7 +85,7 @@ async function fetchRepoStats(): Promise<RepoStats> {
       goodFirstIssues: Array.isArray(gfiIssues) ? gfiIssues.length : 0,
       contributors: mappedContributors,
     };
-  } catch {
+  } catch (e) {
     return {
       stars: 0,
       forks: 0,

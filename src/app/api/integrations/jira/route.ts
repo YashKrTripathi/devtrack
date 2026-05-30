@@ -118,7 +118,7 @@ export async function GET(req: NextRequest) {
       );
     }
     decryptedToken = decrypted;
-  } catch {
+  } catch (e) {
     return Response.json(
       { error: "Failed to decrypt credentials" },
       { status: 500 }
@@ -139,7 +139,7 @@ export async function GET(req: NextRequest) {
       metrics,
       recentIssues: issues.slice(0, 10),
     });
-  } catch {
+  } catch (e) {
     return Response.json(
       { error: "Failed to fetch Jira data" },
       { status: 502 }

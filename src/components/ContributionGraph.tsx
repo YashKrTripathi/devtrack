@@ -145,7 +145,7 @@ export default function ContributionGraph() {
           localStorage.setItem("devtrack:contribution-range", "30");
           setDays(30);
         }
-      } catch {
+      } catch (e) {
         setDays(30);
       }
     }
@@ -171,7 +171,7 @@ export default function ContributionGraph() {
     if (typeof window !== "undefined") {
       try {
         localStorage.setItem("devtrack:contribution-range", String(newDays));
-      } catch {}
+      } catch (e) {}
     }
   };
 

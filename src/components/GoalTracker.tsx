@@ -66,7 +66,7 @@ export default function GoalTracker() {
           if (errData && errData.error) {
             msg = errData.error;
           }
-        } catch {}
+        } catch (e) {}
         if (res.status === 401) {
           msg = "Unauthorized. Please log in again.";
         } else if (res.status === 502) {
@@ -83,7 +83,7 @@ export default function GoalTracker() {
       await loadGoals();
       setLastUpdated(new Date());
       setMinutesAgo(0);
-    } catch {
+    } catch (e) {
       setSyncError("Network error. Failed to sync goals.");
     } finally {
       setSyncing(false);
@@ -154,7 +154,7 @@ export default function GoalTracker() {
       } else {
         await loadGoals().catch(() => { });
       }
-    } catch {
+    } catch (e) {
       setCreateError("Failed to create goal. Please try again.");
     } finally {
       setCreating(false);  
@@ -174,7 +174,7 @@ export default function GoalTracker() {
         setGoals(previousGoals);
         setDeleteError("Failed to delete goal. Please try again.");
       }
-    } catch {
+    } catch (e) {
       setGoals(previousGoals);
       setDeleteError("Failed to delete goal. Please check your connection.");
     } finally {

@@ -11,7 +11,7 @@ import {
 import { getAccountToken } from "@/lib/github-accounts";
 import { resolveAppUser } from "@/lib/resolve-user";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export async function GET(req: NextRequest) {
   const session = await getServerSession(authOptions);
@@ -49,7 +49,7 @@ export async function GET(req: NextRequest) {
       () => fetchIssuesMetrics(token!)
     );
     return Response.json(metrics);
-  } catch {
+  } catch (e) {
     return Response.json({ error: "GitHub API error" }, { status: 502 });
   }
 }

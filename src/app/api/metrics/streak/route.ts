@@ -13,7 +13,7 @@ import { supabaseAdmin } from "@/lib/supabase";
 import { resolveAppUser } from "@/lib/resolve-user";
 import { dateDiffDays, toDateStr } from "@/lib/dateUtils";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 async function fetchActiveDates(
   githubLogin: string,
@@ -234,7 +234,7 @@ export async function GET(req: NextRequest) {
       return Response.json(
         calculateStreakFromDates(activeDates, freezeDates)
       );
-    } catch {
+    } catch (e) {
       // fetchActiveDates throws on GitHub API errors (rate limit, network failure).
       // Return 502 so the client shows an error state rather than a false 0-day streak.
       return Response.json({ error: "GitHub API error" }, { status: 502 });
@@ -311,7 +311,7 @@ export async function GET(req: NextRequest) {
       userId: accountId,
     });
     return Response.json(calculateStreakFromDates(activeDates, freezeDates));
-  } catch {
+  } catch (e) {
     return Response.json({ error: "GitHub API error" }, { status: 502 });
   }
 }

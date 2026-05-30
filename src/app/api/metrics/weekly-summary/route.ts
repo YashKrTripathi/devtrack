@@ -8,7 +8,7 @@ import { getAccountToken } from "@/lib/github-accounts";
 import { supabaseAdmin } from "@/lib/supabase";
 import { resolveAppUser } from "@/lib/resolve-user";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 // Returns the start of the current week (Monday 00:00:00 UTC).
 // All week boundary comparisons use UTC to stay consistent with GitHub's
@@ -301,7 +301,7 @@ export async function GET(req: NextRequest) {
       };
     });
     return Response.json(data);
-  } catch {
+  } catch (e) {
     // Catches errors thrown by the PR Search call or fetchActiveDates (rate limit, network).
     // Returns 502 so the client shows an error state rather than stale/empty summary data.
     return Response.json({ error: "GitHub API error" }, { status: 502 });

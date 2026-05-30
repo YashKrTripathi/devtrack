@@ -15,7 +15,7 @@ import {
 import { supabaseAdmin } from "@/lib/supabase";
 import { resolveAppUser } from "@/lib/resolve-user";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 const STALE_THRESHOLD_OPTIONS = [7, 14, 30] as const;
 const DEFAULT_STALE_THRESHOLD_DAYS = 7;
@@ -501,7 +501,7 @@ async function getGitLabMetrics(
 
   try {
     return await fetchCachedGitLabMRMetrics(token, cacheContext);
-  } catch {
+  } catch (e) {
     return null;
   }
 }
@@ -620,7 +620,7 @@ export async function GET(req: NextRequest) {
         fetchReviewMetrics(session.accessToken).catch(() => null),
       ]);
       return Response.json({ ...formatPRMetricsResponse(result, gitlab), reviews });
-    } catch {
+    } catch (e) {
       // Catches errors from fetchCachedPRMetrics (GitHub Search API failures).
       // Returns 502 so the client knows the data is unavailable, not just empty.
       return Response.json({ error: "GitHub API error" }, { status: 502 });
@@ -735,7 +735,7 @@ export async function GET(req: NextRequest) {
       fetchReviewMetrics(selectedAccount.token).catch(() => null),
     ]);
     return Response.json({ ...formatPRMetricsResponse(result, gitlab), reviews });
-  } catch {
+  } catch (e) {
     return Response.json({ error: "GitHub API error" }, { status: 502 });
   }
 }

@@ -16,7 +16,7 @@ import {
 import { supabaseAdmin } from "@/lib/supabase";
 import { resolveAppUser } from "@/lib/resolve-user";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 interface RepoSummary {
   name: string;
@@ -236,7 +236,7 @@ export async function GET(req: NextRequest) {
         { bypass, userId: session.githubId ?? session.githubLogin }
       );
       return Response.json(result);
-    } catch {
+    } catch (e) {
       // fetchReposForAccount throws on GitHub API errors (rate limit, network failure).
       // Return 502 so the client shows an error state rather than an empty repos widget.
       return Response.json({ error: "GitHub API error" }, { status: 502 });
@@ -299,7 +299,7 @@ export async function GET(req: NextRequest) {
         { bypass, userId: session.githubId }
       );
       return Response.json(result);
-    } catch {
+    } catch (e) {
       return Response.json({ error: "GitHub API error" }, { status: 502 });
     }
   }
@@ -330,7 +330,7 @@ export async function GET(req: NextRequest) {
       { bypass, userId: accountId }
     );
     return Response.json(result);
-  } catch {
+  } catch (e) {
     return Response.json({ error: "GitHub API error" }, { status: 502 });
   }
 }

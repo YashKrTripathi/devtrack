@@ -152,7 +152,7 @@ export async function cacheGet<T>(
         setMemoryCacheValue(key, redisValue, ttlSeconds);
       }
       return redisValue;
-    } catch {
+    } catch (e) {
       return null;
     }
   }
@@ -174,7 +174,7 @@ export async function cacheSet<T>(
   if (redis) {
     try {
       await redis.set(key, value, { ex: ttlSeconds });
-    } catch {
+    } catch (e) {
       // Cache failures must not break dashboard metrics.
     }
   }
@@ -223,7 +223,7 @@ export async function invalidateUserMetricsCache(userId: string): Promise<void> 
       }
       cursor = Number(nextCursor);
     } while (cursor !== 0);
-  } catch {
+  } catch (e) {
     // Invalidation failures must not break the webhook response.
   }
 }

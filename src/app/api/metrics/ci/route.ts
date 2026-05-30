@@ -7,7 +7,7 @@ import { resolveAppUser } from "@/lib/resolve-user";
 import { isMetricsCacheBypassed, metricsCacheKey, withMetricsCache } from "@/lib/metrics-cache";
 import { fetchCIAnalyticsForAccount, mergeCIAnalytics } from "@/lib/ci-analytics";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export async function GET(req: NextRequest) {
   const session = await getServerSession(authOptions);
@@ -44,7 +44,7 @@ export async function GET(req: NextRequest) {
     });
 
     return Response.json(data);
-  } catch {
+  } catch (e) {
     return Response.json({ error: "GitHub API error" }, { status: 502 });
   }
 }

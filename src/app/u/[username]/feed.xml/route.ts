@@ -104,7 +104,7 @@ export async function GET(
         "Cache-Control": "public, max-age=300",
       },
     });
-  } catch {
+  } catch (e) {
     return new Response("Internal Server Error", { status: 500 });
   }
 }

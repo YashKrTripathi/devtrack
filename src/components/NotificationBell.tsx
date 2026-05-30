@@ -28,7 +28,7 @@ export default function NotificationBell() {
       if (typeof window !== "undefined") {
         localStorage.setItem("devtrack:unread-notification-count", count.toString());
       }
-    } catch {
+    } catch (e) {
       // silent fail
     }
   }, []);
