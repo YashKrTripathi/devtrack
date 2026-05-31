@@ -24,7 +24,7 @@ const RECURRENCE_LABELS: Record<Recurrence, string> = {
   monthly: "Monthly",
 };
 
-export default function GoalTracker() {
+export function useGoalTracker() {
   const [goals, setGoals] = useState<Goal[]>([]);
   const [loading, setLoading] = useState(true);
   const [syncing, setSyncing] = useState(false);
@@ -129,8 +129,8 @@ export default function GoalTracker() {
     return () => window.removeEventListener("devtrack:sync", handleSyncEvent);
   }, [loadGoals]);
 
-  async function handleCreate(e: React.FormEvent) {
-    e.preventDefault();
+  async function handleCreate(e?: React.FormEvent) {
+    if (e) e.preventDefault();
     setCreating(true);
     setCreateError(null);
 
@@ -222,7 +222,7 @@ export default function GoalTracker() {
       const wasCompleted = prevGoalsRef.current.get(g.id);
 
       if (wasCompleted === false && isCompleted) {
-        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        if (typeof window !== "undefined" && typeof window.matchMedia === "function" && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
           setActiveConfettiGoalId(g.id);
           setTimeout(() => {
             setActiveConfettiGoalId((curr) => (curr === g.id ? null : curr));
@@ -242,6 +242,75 @@ export default function GoalTracker() {
     }, 60000);
     return () => clearInterval(interval);
   }, [lastUpdated]);
+
+  return {
+    goals,
+    setGoals,
+    loading,
+    setLoading,
+    syncing,
+    syncError,
+    setSyncError,
+    lastUpdated,
+    minutesAgo,
+    title,
+    setTitle,
+    target,
+    setTarget,
+    unit,
+    setUnit,
+    recurrence,
+    setRecurrence,
+    deadline,
+    setDeadline,
+    creating,
+    createError,
+    confirmingId,
+    setConfirmingId,
+    deletingId,
+    deleteError,
+    setDeleteError,
+    activeConfettiGoalId,
+    handleSync,
+    handleCreate,
+    handleDelete,
+    getCompletionLabel,
+  };
+}
+
+export default function GoalTracker() {
+  const {
+    goals,
+    setGoals,
+    loading,
+    syncing,
+    syncError,
+    setSyncError,
+    lastUpdated,
+    minutesAgo,
+    title,
+    setTitle,
+    target,
+    setTarget,
+    unit,
+    setUnit,
+    recurrence,
+    setRecurrence,
+    deadline,
+    setDeadline,
+    creating,
+    createError,
+    confirmingId,
+    setConfirmingId,
+    deletingId,
+    deleteError,
+    setDeleteError,
+    activeConfettiGoalId,
+    handleSync,
+    handleCreate,
+    handleDelete,
+    getCompletionLabel,
+  } = useGoalTracker();
 
   if (loading) {
     return (
