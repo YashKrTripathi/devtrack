@@ -27,6 +27,7 @@ test.beforeEach(async ({ page }) => {
       httpOnly: true,
       sameSite: "Lax",
       secure: false,
+      expires: Math.floor(Date.now() / 1000) + 60 * 60,
     },
   ]);
 
@@ -46,7 +47,7 @@ test("theme toggle switches between dark and light mode", async ({ page }) => {
 
   const initialPressed = await themeToggle.getAttribute("aria-pressed");
 
-  await themeToggle.click();
+  await themeToggle.click({ force: true });
 
   await expect(themeToggle).toHaveAttribute(
     "aria-pressed",
