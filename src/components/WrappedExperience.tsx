@@ -185,7 +185,7 @@ export default function WrappedExperience() {
   const currentSlide = slides[slide];
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-50">
+    <main className="wrapped-root min-h-screen bg-slate-950 text-slate-50">
       <div className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-4 py-6 sm:px-6 lg:px-8">
         <header className="flex flex-col gap-4 border-b border-white/10 pb-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
