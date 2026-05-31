@@ -8,7 +8,7 @@ import { getAccountToken } from "@/lib/github-accounts";
 import { supabaseAdmin } from "@/lib/supabase";
 import { resolveAppUser } from "@/lib/resolve-user";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 // Returns the start of the current week (Monday 00:00:00 UTC).
 // All week boundary comparisons use UTC to stay consistent with GitHub's

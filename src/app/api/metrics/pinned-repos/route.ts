@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 interface PinnedRepo {
   name: string;

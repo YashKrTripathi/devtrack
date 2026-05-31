@@ -15,7 +15,7 @@ import {
 import { supabaseAdmin } from "@/lib/supabase";
 import { resolveAppUser } from "@/lib/resolve-user";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 const STALE_THRESHOLD_OPTIONS = [7, 14, 30] as const;
 const DEFAULT_STALE_THRESHOLD_DAYS = 7;

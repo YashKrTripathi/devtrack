@@ -17,7 +17,7 @@ import { supabaseAdmin } from "@/lib/supabase";
 import { resolveAppUser } from "@/lib/resolve-user";
 import { normalizeGitHubUsername } from "@/lib/validate-github-username";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 interface TimeBlocks {
   morning: number;

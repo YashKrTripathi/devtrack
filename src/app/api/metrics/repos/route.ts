@@ -16,7 +16,7 @@ import {
 import { supabaseAdmin } from "@/lib/supabase";
 import { resolveAppUser } from "@/lib/resolve-user";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 interface RepoSummary {
   name: string;

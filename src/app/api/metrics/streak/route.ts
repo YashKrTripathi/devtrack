@@ -14,7 +14,7 @@ import { resolveAppUser } from "@/lib/resolve-user";
 import { dateDiffDays, toDateStr } from "@/lib/dateUtils";
 import { dispatchToAllWebhooks } from "@/lib/webhooks";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 async function fetchActiveDates(
   githubLogin: string,

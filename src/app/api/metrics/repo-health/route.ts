@@ -5,7 +5,7 @@ import { computeHealthScore } from "@/lib/repo-health";
 import { isMetricsCacheBypassed, metricsCacheKey, withMetricsCache } from "@/lib/metrics-cache";
 import type { RepoHealthResponse, RepoHealthSignals, RepoHealthScore } from "@/types/repo-health";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 const GITHUB_API = "https://api.github.com";
 
 interface RepoSummary { name: string; commits: number; url: string; }

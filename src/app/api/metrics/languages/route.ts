@@ -6,7 +6,7 @@ import { getAccountToken } from "@/lib/github-accounts";
 import { supabaseAdmin } from "@/lib/supabase";
 import { resolveAppUser } from "@/lib/resolve-user";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 const GITHUB_API = "https://api.github.com";
 
 export async function GET(req: NextRequest) {

@@ -7,7 +7,7 @@ import { resolveAppUser } from "@/lib/resolve-user";
 import { isMetricsCacheBypassed, metricsCacheKey, withMetricsCache } from "@/lib/metrics-cache";
 import { fetchCIAnalyticsForAccount, mergeCIAnalytics } from "@/lib/ci-analytics";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest) {
   const session = await getServerSession(authOptions);
