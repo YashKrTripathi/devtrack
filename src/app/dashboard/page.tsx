@@ -55,27 +55,27 @@ const PRMetricsSkeleton = () => (
 
 const CodingActivityInsightsCard = dynamic(
   () => import("@/components/CodingActivityInsightsCard"),
-  { ssr: false, loading: () => <SkeletonCard /> },
+  { loading: () => <SkeletonCard /> },
 );
 
 const FriendComparison = dynamic(
   () => import("@/components/FriendComparison"),
-  { ssr: false, loading: () => <SkeletonCard /> },
+  { loading: () => <SkeletonCard /> },
 );
 
 const ActivityRingChart = dynamic(
   () => import("@/components/ActivityRingChart"),
-  { ssr: false, loading: () => <SkeletonCard /> },
+  { loading: () => <SkeletonCard /> },
 );
 
 const ContributionGraph = dynamic(
   () => import("@/components/ContributionGraph"),
-  { ssr: false, loading: () => <ContributionGraphSkeleton /> },
+  { loading: () => <ContributionGraphSkeleton /> },
 );
 
 const ContributionHeatmap = dynamic(
   () => import("@/components/ContributionHeatmap"),
-  { ssr: false, loading: () => <SkeletonCard /> },
+  { loading: () => <SkeletonCard /> },
 );
 
 const RepoContributionDistribution = dynamic(
@@ -87,23 +87,22 @@ const RepoContributionDistribution = dynamic(
 );
 
 const PRMetrics = dynamic(() => import("@/components/PRMetrics"), {
-  ssr: false,
   loading: () => <PRMetricsSkeleton />,
 });
 
 const PRBreakdownChart = dynamic(
   () => import("@/components/PRBreakdownChart"),
-  { ssr: false, loading: () => <SkeletonCard /> },
+  { loading: () => <SkeletonCard /> },
 );
 
 const CommitTimeChart = dynamic(
   () => import("@/components/CommitTimeChart"),
-  { ssr: false, loading: () => <SkeletonCard /> },
+  { loading: () => <SkeletonCard /> },
 );
 
 const PRReviewTrendChart = dynamic(
   () => import("@/components/PRReviewTrendChart"),
-  { ssr: false, loading: () => <SkeletonCard /> },
+  { loading: () => <SkeletonCard /> },
 );
 import WeeklySummaryCard from "@/components/WeeklySummaryCard";
 import { AIMentorWidget } from "@/components/AIMentorWidget";
