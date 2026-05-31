@@ -10,6 +10,7 @@ import MarkdownBio from "@/components/MarkdownBio";
 import { toast } from "sonner";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import WebhookManager from "@/components/webhook/WebhookManager";
 
 // ── Max length for the profile bio ──────────────────────────────────────────
 const BIO_MAX = 160;
@@ -1361,6 +1362,8 @@ function SettingsPageContent() {
             </button>
           </Link>
         </div>
+
+        <WebhookManager />
 
         <ConfirmModal
           isOpen={showConfirmModal}
